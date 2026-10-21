@@ -6,4 +6,4 @@ version=$(python3 -c 'import json; print(json.load(open("extension/manifest.json
 zip_path="dist/minimal-bilingual-translate-$version.zip"
 mkdir -p dist && rm -f "$zip_path"
 zip -qrX "$zip_path" extension
-sha256sum "$zip_path" | tee "$zip_path.sha256"
+(cd dist && sha256sum "${zip_path#dist/}" | tee "${zip_path#dist/}.sha256")
