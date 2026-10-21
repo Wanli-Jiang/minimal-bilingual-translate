@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "双语网页翻译（极简）",
+  "version": "0.3.0",
+  "description": "点击图标把网页翻译成中英对照；选中文字后右键或按 Alt+S 划词翻译。只连接你配置的 OpenAI 兼容接口，没有账号、统计或云同步。",
+  "minimum_chrome_version": "116",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "contextMenus"
+  ],
+  "optional_host_permissions": [
+    "https://*/*",
+    "http://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "翻译此页 / 切换原文（Alt+A）",
+    "default_icon": {
+      "16": "icons/16.png",
+      "32": "icons/32.png",
+      "48": "icons/48.png",
+      "128": "icons/128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/16.png",
+    "32": "icons/32.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+A"
+      }
+    },
+    "translate-selection": {
+      "suggested_key": {
+        "default": "Alt+S"
+      },
+      "description": "翻译选中的文字"
+    }
+  }
+}

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>双语网页翻译 · 设置</title>
+<style>
+  :root { color-scheme: light dark; --fg:#1f2328; --muted:#656d76; --bg:#fff; --line:#d0d7de; --accent:#0969da; --ok:#1a7f37; --err:#cf222e; }
+  @media (prefers-color-scheme: dark) { :root { --fg:#e6edf3; --muted:#9198a1; --bg:#0d1117; --line:#30363d; --accent:#4493f8; --ok:#3fb950; --err:#f85149; } }
+  body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui, sans-serif; }
+  main { max-width:520px; margin:48px auto; padding:0 16px; }
+  h1 { font-size:20px; margin:0 0 4px; }
+  p.lead { color:var(--muted); margin:0 0 28px; }
+  fieldset { border:1px solid var(--line); border-radius:10px; padding:16px 18px 6px; margin:0 0 20px; }
+  legend { font-weight:600; padding:0 6px; }
+  label { display:block; margin:0 0 12px; }
+  label span { display:block; color:var(--muted); font-size:12px; margin-bottom:4px; }
+  input, select { width:100%; box-sizing:border-box; padding:8px 10px; border:1px solid var(--line); border-radius:6px; background:transparent; color:inherit; font:inherit; }
+  .row { display:flex; gap:8px; }
+  .row input { flex:1; }
+  button { padding:8px 16px; border-radius:6px; border:1px solid var(--line); background:transparent; color:inherit; font:inherit; cursor:pointer; }
+  button.primary { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .actions { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+  #status { margin-top:14px; min-height:1.5em; white-space:pre-wrap; }
+  #status.ok { color:var(--ok); } #status.err { color:var(--err); }
+</style>
+</head>
+<body>
+<main>
+  <h1>双语网页翻译</h1>
+  <p class="lead">网页翻译：点击工具栏图标或按 Alt+A，再按一次切回原文。划词翻译：选中文字后右键“翻译选中文字”或按 Alt+S。英文译成简体中文，选中的中文译成英文。</p>
+
+  <fieldset>
+    <legend>LLM Provider</legend>
+    <label><span>服务商</span>
+      <select id="preset"></select>
+    </label>
+    <label><span>API 地址（OpenAI 兼容，填到 /v1 或服务商给的根地址即可）</span>
+      <input id="apiUrl" type="url" placeholder="https://…/v1" autocomplete="off" spellcheck="false">
+    </label>
+    <label><span>模型</span>
+      <input id="model" type="text" autocomplete="off" spellcheck="false">
+    </label>
+  </fieldset>
+
+  <fieldset>
+    <legend>API Key</legend>
+    <label><span>只保存在本机浏览器中，仅随请求发送给上面的 API 地址</span>
+      <div class="row">
+        <input id="apiKey" type="password" autocomplete="off" spellcheck="false">
+        <button id="reveal" type="button">显示</button>
+      </div>
+    </label>
+  </fieldset>
+
+  <div class="actions">
+    <button id="save" class="primary" type="button">保存</button>
+    <button id="test" type="button">测试连接</button>
+  </div>
+  <div id="status" role="status"></div>
+</main>
+<script src="options.js"></script>
+</body>
+</html>
